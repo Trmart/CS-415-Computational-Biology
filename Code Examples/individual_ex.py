@@ -1,5 +1,5 @@
 import random #for random number generation
-import copy #for the copy function
+#import copy #for the copy function
 
 #set the size of the genome
 genome_size = 10
@@ -30,8 +30,17 @@ class individual:
    def print_individual(self):
 
       #print fitness and genome
-      print("Fitness: ", self.fitness)
-      print("Genome: ", self.genome)
+      # print("Fitness: ", self.fitness)
+      # print("Genome: ", self.genome)
+      # print(self.__str__())
+      
+      # print ("Genome: ")
+      # for c in self.genome:
+      #    print(c, end="")
+      # print(" Fitness: ", self.fitness)
+
+      print(self.__str__())
+      print()
 
    #This is the fitness function for this problem.
    #go through and add up all of the 'T' characters in the genome. 
@@ -60,7 +69,35 @@ class individual:
 
       #recalculate the fitness of the individual
       self.calculate_fitness()
+   
+   #copy function
+   def copy(self, copy_source):
 
+      #copy the fitness
+      self.fitness = copy_source.fitness
+      
+      #copy the genome one character at a time using for loop
+      # for i in range(0,genome_size):
+      #    self.genome[i] = copy_source.genome[i]
+
+      #copy the genome one character at a time using list comprehension
+      self.genome = [i for i in copy_source.genome]
+
+   def __str__(self):
+      
+      output = "Individual # " + str(id(self))
+      output += " Genome: "
+      
+      for c in self.genome:
+         output += c
+      
+      output += " "
+
+      output += "Fitness: "
+
+      output += str(self.fitness)
+
+      return output
 
 def main():
    
@@ -72,7 +109,7 @@ def main():
    ind2 = individual()
 
    #cell division by copying
-   ind2 = copy.deepcopy(ind1)
+   ind2.copy(ind1)
 
    #print and mutate the daughter
    ind2.print_individual()
