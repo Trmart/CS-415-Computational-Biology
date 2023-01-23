@@ -1,6 +1,7 @@
 import population as pop
 import individual as ind
 
+"""main function"""
 def main():
    
    #mother
@@ -22,5 +23,6 @@ def main():
 
    pop1.print_population()
 
+"""call main"""
 if __name__ == "__main__":
    main()

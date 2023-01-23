@@ -1,5 +1,6 @@
 import individual as ind
 
+#global population size for population class
 population_size = 4
 
 """population class"""
@@ -24,7 +25,7 @@ class population:
    
    
    """print_population"""""
-   """Print the population function"""
+   """Print the individuals in the population """
    def print_population(self):
 
       ##print the population by calling the print_individual function for each individual in the population

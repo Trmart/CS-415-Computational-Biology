@@ -7,7 +7,10 @@ genome_size = 10
 #set the possible DNA characters
 DNA_Characters = ['A', 'C', 'G', 'T']
 
+"""individual class"""
 class individual:
+   
+   """class constructor"""
    def __init__(self):
 
       #Print Object Init Message
@@ -26,7 +29,7 @@ class individual:
       #calculate the fitness of the individual
       self.calculate_fitness()
 
-   #print the individual function
+   """print_individual"""""
    def print_individual(self):
 
       #print fitness and genome
@@ -42,9 +45,9 @@ class individual:
       print(self.__str__())
       print()
 
-   #This is the fitness function for this problem.
-   #go through and add up all of the 'T' characters in the genome. 
-   #The total number of 'T' characters is the fitness of the individual.
+   """calculate_fitness function"""
+   """go through and add up all of the 'T' characters in the genome. """
+   """The total number of 'T' characters is the fitness of the individual."""
    def calculate_fitness(self):
       #reset the fitness of the individual to 0
       self.fitness = 0
@@ -54,8 +57,8 @@ class individual:
          if c == 'T':
             self.fitness += 1
 
-   #This is the mutation function for this problem.
-   #select a random index in the genome and change the character at that index to a random DNA character.
+   """mutation function"""
+   """select a random index in the genome and change the character at that index to a random DNA character."""
    def mutation(self):
 
       #select a random index in the genome
@@ -70,7 +73,8 @@ class individual:
       #recalculate the fitness of the individual
       self.calculate_fitness()
    
-   #copy function
+   """copy function"""
+   """copy the fitness and genome from the copy_source individual to the current individual."""
    def copy(self, copy_source):
 
       #copy the fitness
@@ -83,6 +87,8 @@ class individual:
       #copy the genome one character at a time using list comprehension
       self.genome = [i for i in copy_source.genome]
 
+   """str function"""
+   """return a string representation of the individual"""
    def __str__(self):
       
       output = "Individual # " + str(id(self))
