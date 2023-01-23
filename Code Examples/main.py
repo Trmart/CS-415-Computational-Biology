@@ -23,6 +23,8 @@ def main():
 
    pop1.print_population()
 
+   pop1.tournament_selection()
+
 """call main"""
 if __name__ == "__main__":
    main()
