@@ -98,24 +98,3 @@ class individual:
       output += str(self.fitness)
 
       return output
-
-def main():
-   
-   #mother
-   ind1 = individual()
-   ind1.print_individual()
-
-   #daughter
-   ind2 = individual()
-
-   #cell division by copying
-   ind2.copy(ind1)
-
-   #print and mutate the daughter
-   ind2.print_individual()
-   ind2.mutation()
-   ind2.print_individual()
-
-
-if __name__ == "__main__":
-   main()
