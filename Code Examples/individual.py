@@ -14,7 +14,7 @@ class individual:
    def __init__(self):
 
       #Print Object Init Message
-      print("Creating A New Individual")
+      print("Creating A New Individual\n")
 
       #init fitness to 0, we do not know the fitness of the individual yet.
       self.fitness = 0
@@ -31,19 +31,9 @@ class individual:
 
    """print_individual"""""
    def print_individual(self):
-
-      #print fitness and genome
-      # print("Fitness: ", self.fitness)
-      # print("Genome: ", self.genome)
-      # print(self.__str__())
       
-      # print ("Genome: ")
-      # for c in self.genome:
-      #    print(c, end="")
-      # print(" Fitness: ", self.fitness)
-
-      print(self.__str__())
-      print()
+      #print the individual by calling the __str__ function
+      print(self.__str__(), "\n")
 
    """calculate_fitness function"""
    """go through and add up all of the 'T' characters in the genome. """
@@ -91,7 +81,7 @@ class individual:
    """return a string representation of the individual"""
    def __str__(self):
       
-      output = "Individual # " + str(id(self))
+      output = "Individual #" + str(id(self))
       output += " Genome: "
       
       for c in self.genome:
