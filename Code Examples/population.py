@@ -1,10 +1,11 @@
-import individual as ind
+from individual import individual
 import random
 
 #global population size for population class
 population_size = 4
 #global tournament size for population class
 tournament_size = 3
+
 """population class"""
 class population:
 
@@ -21,7 +22,7 @@ class population:
       self.the_population = []
 
       for i in range (0,population_size):
-         self.the_population.append(ind.individual())
+         self.the_population.append(individual())
 
       self.calculate_population_stats()
    

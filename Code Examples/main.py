@@ -1,15 +1,15 @@
-import population as pop
-import individual as ind
+from population import population
+from individual import individual
 
 """main function"""
 def main():
    
    #mother
-   # ind1 = ind.individual()
+   # ind1 = individual()
    # ind1.print_individual()
 
    # #daughter
-   # ind2 = ind.individual()
+   # ind2 = individual()
 
    # #cell division by copying
    # ind2.copy(ind1)
@@ -19,7 +19,7 @@ def main():
    # ind2.mutation()
    # ind2.print_individual()
 
-   pop1 = pop.population()
+   pop1 = population()
 
    pop1.print_population()
 
