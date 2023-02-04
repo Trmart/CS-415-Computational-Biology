@@ -7,6 +7,8 @@ genome_size = 10
 #set the possible DNA characters
 DNA_Characters = ['A', 'C', 'G', 'T']
 
+individual_mutatation_rate = 2
+
 """individual class"""
 class individual:
    
@@ -51,15 +53,14 @@ class individual:
    """select a random index in the genome and change the character at that index to a random DNA character."""
    def mutation(self):
 
-      #select a random index in the genome
-      index = random.randint(0, genome_size - 1)
-
-      #select a random DNA character
-      new_char = random.choice(DNA_Characters)
-
-      #set the character at the random index to the random DNA character
-      self.genome[index] = new_char
-
+      for i in range(0, genome_size):
+         
+         #select a random index in the genome
+         if random.uniform(0,100) < individual_mutatation_rate:
+            
+            #set the character at the random index to a random DNA character
+            self.genome[i] = random.choice(DNA_Characters)
+      
       #recalculate the fitness of the individual
       self.calculate_fitness()
    
@@ -69,10 +70,6 @@ class individual:
 
       #copy the fitness
       self.fitness = copy_source.fitness
-      
-      #copy the genome one character at a time using for loop
-      # for i in range(0,genome_size):
-      #    self.genome[i] = copy_source.genome[i]
 
       #copy the genome one character at a time using list comprehension
       self.genome = [i for i in copy_source.genome]

@@ -1,10 +1,12 @@
-from individual import individual
+from individual import individual, genome_size
 import random
 
 #global population size for population class
 population_size = 4
 #global tournament size for population class
 tournament_size = 3
+#global crossover probability for population class
+crossover_probability = 10
 
 """population class"""
 class population:
@@ -83,20 +85,26 @@ class population:
       temp_population = population()
       
       #for each individual in the population
-      for i in range(0,population_size):
+      for i in range(0,population_size,2):
          
          #select individuals using tournament()
          parent = self.tournament_selection()
-         
+         parent2 = self.tournament_selection()
+
          #copy individuals from new/temp population to population
          temp_population.the_population[i].copy(self.the_population[parent])
          temp_population.the_population[i].print_individual()
+
+         #copy individuals from new/temp population to population
+         temp_population.the_population[i+1].copy(self.the_population[parent2])
+         temp_population.the_population[i+1].print_individual()
          
+         #crossover the individuals
+         temp_population.uniform_crossover(i,i+1)
+
          #mutate the individual just added to the temp_population!!
-         temp_population.the_population[i].mutation()
-         temp_population.the_population[i].print_individual()
-
-
+         # temp_population.the_population[i].mutation()
+         # temp_population.the_population[i].print_individual()
 
       #when new population is full, copy new/temp population back into population
       for i in range(0,population_size):
@@ -104,3 +112,33 @@ class population:
       
       self.calculate_population_stats()
       self.print_population()
+
+   """uniform crossover function"""
+   def uniform_crossover(self,pop1,pop2):
+      """"""
+      for i in range(0,genome_size):
+         if random.randint(0,100) < crossover_probability:
+            self.swap(self.the_population[pop1].genome[i],self.the_population[pop2].genome[i])
+
+
+
+   """one point crossover function"""
+   def one_point_crossover(self,pop1,pop2):
+      """select a crossover point and swap the genomes from the crossover point to the end of the genome"""
+      
+      #select a ranom crossover point within the genome
+      crossover_point = random.randint(0,genome_size)
+
+      #swap the genomes from the crossover point to the end of the genome
+      for i in range(crossover_point,genome_size):
+         self.swap(self.the_population[pop1].genome[i],self.the_population[pop2].genome[i])
+
+
+
+   """swap population function"""
+   def swap(self,pop1,pop2):
+      """swap the sent in populations"""
+      # temp = pop1
+      # pop1 = pop2
+      # pop2 = temp
+      pop1,pop2 = pop2,pop1
