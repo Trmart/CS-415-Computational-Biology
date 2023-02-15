@@ -2,7 +2,7 @@ from individual import individual, genome_size
 import random
 
 #global population size for population class
-population_size = 4
+# population_size = 50
 #global tournament size for population class
 tournament_size = 3
 #global crossover probability for population class
@@ -12,10 +12,10 @@ crossover_probability = 10
 class population:
 
    """class constructor"""
-   def __init__(self):
+   def __init__(self, population_size):
       
       ##Print Object Init Message
-      print("Creating A New Population\n")
+      print(f'{"Creating A New Population Of Size: "}{population_size}\n')
       
       ##init the populations average fitness to 0, we do not know the fitness of the population yet.
       self.avg_fitness = 0
@@ -37,6 +37,7 @@ class population:
       for i in self.the_population:
          i.print_individual()
 
+      self.calculate_population_stats()   
       ##print the average fitness of the population
       print("Average Fitness: ", self.avg_fitness , "\n")
    
@@ -48,11 +49,11 @@ class population:
       for i in self.the_population:
          self.avg_fitness += i.fitness
       
-      self.avg_fitness /= population_size
+      self.avg_fitness /= self.get_population_size()
 
    """tournament_selection function"""
    """randomly select two individuals from the population and return the individual with the higher fitness."""
-   def tournament_selection(self):
+   def tournament_selection(self,population_size,tournament_size):
       
       #select a random individual from the population, this individual will be the best individual
       best_individual = random.randint(0, population_size - 1)
@@ -79,7 +80,7 @@ class population:
       return best_individual
 
    """generational function"""
-   def generational(self):
+   def generational(self, population_size, tournament_size):
       """"""
       #generate a new/temp population
       temp_population = population()
@@ -142,3 +143,13 @@ class population:
       # pop1 = pop2
       # pop2 = temp
       pop1,pop2 = pop2,pop1
+
+   """get_population_size function"""
+   def get_population_size(self):
+      return len(self.the_population)
+
+   """population mutation function"""
+   def mutate_population(self, individual_mutation_rate):
+      """mutate the population"""
+      for individual in self.the_population:
+         individual.mutation(individual_mutation_rate)

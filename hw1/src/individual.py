@@ -2,12 +2,12 @@ import random #for random number generation
 #import copy #for the copy function
 
 #set the size of the genome
-genome_size = 10
+genome_size = 50
 
 #set the possible DNA characters
 DNA_Characters = ['A', 'C', 'G', 'T']
 
-individual_mutatation_rate = 2
+# individual_mutatation_rate = 5
 
 """individual class"""
 class individual:
@@ -16,7 +16,7 @@ class individual:
    def __init__(self):
 
       #Print Object Init Message
-      print("Creating A New Individual\n")
+      # print("Creating A New Individual\n")
 
       #init fitness to 0, we do not know the fitness of the individual yet.
       self.fitness = 0
@@ -37,32 +37,44 @@ class individual:
       #print the individual by calling the __str__ function
       print(self.__str__(), "\n")
 
-   """calculate_fitness function"""
+   """New calculate_fitness function"""
+   """go through and add up all of the 'T' character triplets in the genome. """
+   """The total number of 'T' character triplets is the fitness of the individual."""
+   # def calculate_fitness(self):
+      
+   #    #reset the fitness of the individual to 0
+   #    self.fitness = 0
+      
+   #    #set the index to 0
+   #    i = 0
+      
+   #    #go through the genome and count the number of 'T' character triplets
+   #    while i < genome_size - 1:
+   #       #if the current character is a 'T' and the next two characters are 'T'
+   #       if self.genome[i] == 'T' and self.genome[i + 1] == 'T' and self.genome[i + 2] == 'T':
+   #          #add 1 to the fitness
+   #          self.fitness += 1
+   #          #increment the index by 3
+   #          i += 2
+   #       #else no 'T' character triplets were found
+   #       #increment the index by 1
+   #       i += 1
+
+   """Old calculate_fitness function"""
    """go through and add up all of the 'T' character triplets in the genome. """
    """The total number of 'T' character triplets is the fitness of the individual."""
    def calculate_fitness(self):
-      
       #reset the fitness of the individual to 0
       self.fitness = 0
-      
-      #set the index to 0
-      i = 0
-      
-      #go through the genome and count the number of 'T' character triplets
-      while i < genome_size - 1:
-         #if the current character is a 'T' and the next two characters are 'T'
-         if self.genome[i] == 'T' and self.genome[i + 1] == 'T' and self.genome[i + 2] == 'T':
-            #add 1 to the fitness
+
+      #go through the genome and count the number of 'T' characters
+      for c in self.genome:
+         if c == 'T':
             self.fitness += 1
-            #increment the index by 3
-            i += 2
-         #else no 'T' character triplets were found
-         #increment the index by 1
-         i += 1
 
    """mutation function"""
    """select a random index in the genome and change the character at that index to a random DNA character."""
-   def mutation(self):
+   def mutation(self, individual_mutatation_rate = 5):
 
       for i in range(0, genome_size):
          
