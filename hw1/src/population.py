@@ -19,6 +19,7 @@ class population:
       
       ##init the populations average fitness to 0, we do not know the fitness of the population yet.
       self.avg_fitness = 0
+      self.avg_strict_fitness = 0
       
       ##init the population to an empty list
       self.the_population = []
@@ -45,11 +46,15 @@ class population:
    """Calculate the average fitness of the population"""
    def calculate_population_stats(self):
       self.avg_fitness = 0
-
+      self.avg_strict_fitness = 0
+      
       for i in self.the_population:
          self.avg_fitness += i.fitness
+         self.avg_strict_fitness += i.strict_fitness
       
       self.avg_fitness /= self.get_population_size()
+      self.avg_strict_fitness /= self.get_population_size()
+
 
    """tournament_selection function"""
    """randomly select two individuals from the population and return the individual with the higher fitness."""

@@ -21,6 +21,8 @@ class individual:
       #init fitness to 0, we do not know the fitness of the individual yet.
       self.fitness = 0
 
+      self.strict_fitness = 0
+
       #init the genome to an empty list
       self.genome = []
 
@@ -31,6 +33,8 @@ class individual:
       #calculate the fitness of the individual
       self.calculate_fitness()
 
+      self.improved_calculate_fitness()
+
    """print_individual"""""
    def print_individual(self):
       
@@ -40,25 +44,25 @@ class individual:
    """New calculate_fitness function"""
    """go through and add up all of the 'T' character triplets in the genome. """
    """The total number of 'T' character triplets is the fitness of the individual."""
-   # def calculate_fitness(self):
+   def improved_calculate_fitness(self):
       
-   #    #reset the fitness of the individual to 0
-   #    self.fitness = 0
+      #reset the fitness of the individual to 0
+      self.strict_fitness = 0
       
-   #    #set the index to 0
-   #    i = 0
+      #set the index to 0
+      i = 0
       
-   #    #go through the genome and count the number of 'T' character triplets
-   #    while i < genome_size - 1:
-   #       #if the current character is a 'T' and the next two characters are 'T'
-   #       if self.genome[i] == 'T' and self.genome[i + 1] == 'T' and self.genome[i + 2] == 'T':
-   #          #add 1 to the fitness
-   #          self.fitness += 1
-   #          #increment the index by 3
-   #          i += 2
-   #       #else no 'T' character triplets were found
-   #       #increment the index by 1
-   #       i += 1
+      #go through the genome and count the number of 'T' character triplets
+      while i < genome_size - 2:
+         #if the current character is a 'T' and the next two characters are 'T'
+         if self.genome[i] == 'T' and self.genome[i + 1] == 'T' and self.genome[i + 2] == 'T':
+            #add 1 to the fitness
+            self.strict_fitness += 1
+            #increment the index by 3
+            i += 2
+         #else no 'T' character triplets were found
+         #increment the index by 1
+         i += 1
 
    """Old calculate_fitness function"""
    """go through and add up all of the 'T' character triplets in the genome. """
